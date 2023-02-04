@@ -1,0 +1,138 @@
+-const hitterRecordElements = ['AB', 'H', 'RBI', 'SO', 'W']
+-const pitcherRecordElements = ['PA', 'H', 'SO', 'W', 'ER']
+
+mixin hitterRecordTable(team, count)
+  tr(class=`input-data__record__team${team}__hitter${count}`)
+      td 
+          select(class="input-select big" name=`team${team}__hitter${count}`)
+      each item in hitterRecordElements
+          td 
+              input(class="input-text" name=`team${team}__hitter${count}__${item}`)
+
+mixin pitcherRecordTable(team, count)
+  tr(class=`input-data__record__team${team}__pitcher${count}`)
+    td 
+      select(class="input-select small" name=`team${team}__pitcher${count}`)
+      select(class="input-select small" name=`team${team}__pitcher${count}__inning1`)
+      select(class="input-select small" name=`team${team}__pitcher${count}__inning2`)
+    each item in pitcherRecordElements
+      td 
+        input(class="input-text" name=`team${team}__pitcher${count}__${item}`)
+
+mixin recordTable(team)
+  div(class=`input-data__record__team`)
+    table(class=`input-data__record__team${team}__hitter record__table`)
+      thead(class='input-data__record__head')
+          tr.input-data__record__item
+            th
+              select.input-select.input-data__record__top__first(name=`record__team${team}`)
+            each item in hitterRecordElements
+              th=item
+      tbody(class=`input-data__record__team${team}__hitter__table`)
+        -for (var i=1; i<17; i++)
+          +hitterRecordTable(team, i)
+      tfoot
+        tr(class=`input-data__record__team${team}__hitter__sum`)
+            td(class='input-data__record__sum')
+              div(class=`record__buttons`)
+                input(class=`record__team${team}__hitter__add` type='button', value='+')
+                input(class=`record__team${team}__hitter__sub` type='button', value='-')
+              p SUM
+            each item in hitterRecordElements
+              td 
+                input(class="input-text" name=`team${team}__hitter__sum__${item}`)
+        
+
+    table(class=`input-data__record__team${team}__pitcher record__table`)
+      thead(class='input-data__record__head')
+        tr.input-data__record__item
+          th 투수 이닝
+          each item in pitcherRecordElements
+            th=item
+      tbody(class=`input-data__record__team${team}__pitcher__table`)
+        -for (var i=1; i<9; i++)
+          +pitcherRecordTable(team, i)
+      tfoot
+        tr(class=`input-data__record__team${team}__pitcher__sum`)
+          td(class='input-data__record__sum')
+            div(class=`record__buttons`)
+              input(class=`record__team${team}__pitcher__add` type='button', value='+')
+              input(class=`record__team${team}__pitcher__sub` type='button', value='-')
+            p SUM
+          each item in pitcherRecordElements
+            td 
+              input(class="input-text" name=`team${team}__pitcher__sum__${item}`)
+        
+
+doctype html
+head
+  title=title
+  link(rel='stylesheet' href='/stylesheets/tools.css')
+body(onselectstart='return false')
+.wrapper
+  form.input-data
+    .input-data__game-info
+      .input-data__game-info__top
+        .input-data__game-info__top__season
+          label#season 시즌
+          select#season.input-select(name='game-info__season')
+            option
+        .input-data__game-info__top__division
+          label#division 디비전
+          select#division.input-select(name='game-info__division')
+            option
+        .input-data__game-info__top__versus
+          label#versus 경기
+          select#versus.input-select(name='game-info__versus')
+            option
+      .input-data__game-info__bottom
+        .input-data__game-info__bottom__date
+          label#date 날짜
+          input#date(type='date' name='game-info__date')
+        .input-data__game-info__bottom__time
+          label#time 시간
+          input#time(type='time' name='game-info__time')
+        .input-data__game-info__bottom__stadium
+          label#stadium 경기장
+          select#stadium.input-select(name='game-info__stadium')
+    .input-data__scoreboard
+      table.input-data__scoreboard__table
+        thead 
+          tr.input-data__scoreboard__inning
+            th TEAM
+            -for (var i=1; i<10; i++)
+              th=i
+        tbody
+          tr.input-data__scoreboard__score.input-data__scoreboard__first
+            td
+              select.input-select(name='team1')
+            -for (var i=1; i<10; i++)
+              td
+                input(class="input-text" name=`team1__${i}th_inning` min="0" type="number")
+          tr.input-data__scoreboard__score.input-data__scoreboard__after
+            td
+              select.input-select(name='team2')
+            -for (var i=1; i<10; i++)
+              td
+                input(class="input-text" name=`team2__${i}th_inning` min="0" type="number")
+      table
+        thead
+          tr
+            th R
+        tbody
+          tr
+            td
+              input.input-text(min='0' type='number')
+          tr
+            td
+              input.input-text(min='0' type='number')
+      .scoreboard__button
+        input.scoreboard__button__add(type='button' value='+')
+        input.scoreboard__button__sub(type='button' value='-')
+
+    .input-data__record
+      +recordTable(1)
+      +recordTable(2)
+    button(type='submit') SAVE
+script(src='/javascripts/tools.js')
+footer

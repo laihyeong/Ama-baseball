@@ -1,0 +1,163 @@
+:root {
+    --background-color: #f6f6f6;
+    --btn-background-color: #aaaaaa;
+    --btn-background-color__hover: #888888;
+    --btn-font-color: #ffffff;
+    --color-yellow: #dfd23f;
+    --color-lightgray: #d0d0d0;
+    --font-color: #5d6f7a;
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1b1527;
+}
+
+body {
+    background-color: var(--background-color);
+    margin: 0;
+}
+
+.input-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-select {
+    width: 120px;
+    height: 20px;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 .5px var(--color-lightgray);
+    text-align: center;
+    color: var(--font-color);
+}
+
+.input-select:focus {
+    box-shadow: 0 0 0 2px var(--color-yellow);
+}
+
+.small {
+    width: 60px;
+    margin: 0px 5px;
+}
+
+.big {
+    width: 200px;
+    margin: 0 6px;
+}
+
+.input-text {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 20px;
+    color: var(--font-color);
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fff;
+    border: 1px;
+    box-shadow: 0 0 0 .5px var(--color-lightgray);
+    border-radius: 5px;
+}
+
+.input-text:focus {
+    box-shadow: 0 0 0 2px var(--color-yellow);
+}
+
+.input-data__game-info {
+    margin: 10px 0;
+    width: 650px;
+    font-weight: bolder;
+}
+
+.input-data__game-info label {
+    margin-right: 5px;
+}
+
+.input-data__game-info__top {
+    justify-content: space-between;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.input-data__game-info__bottom {
+    justify-content: space-between;
+    display: flex;
+}
+
+.input-data__scoreboard {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.scoreboard__button {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.scoreboard__button input {
+    border: none;
+    border-radius: 5px;
+    margin: 2px 0;
+    color: var(--btn-font-color);
+    font-size: large;
+    background-color: var(--btn-background-color);
+}
+
+.scoreboard__button input:hover {
+    background-color: var(--btn-background-color__hover);
+}
+
+.input-data__record {
+    display: flex;
+}
+
+.input-data__record__team {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-data__record__item {
+    width: 400px;
+}
+
+.input-data__record__sum {
+    display: flex;
+}
+
+.input-data__record__sum p {
+    margin: 20px 0 10px 40px;
+    font-weight: bolder;
+}
+
+.record__buttons {
+    display: flex;
+    align-items: center;
+}
+
+.record__buttons input {
+    width: 50px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    margin: 0 5px;
+    background-color: var(--btn-background-color);
+    color: var(--btn-font-color);
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.record__buttons input:hover {
+    background-color: var(--btn-background-color__hover);
+}
