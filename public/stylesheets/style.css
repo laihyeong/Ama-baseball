@@ -1,8 +1,64 @@
+@import url("custom.css");
+
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
-  padding: 50px;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  width: 60px;
+  height: 25px;
+  margin: 5px;
+  color: var(--btn-font-color);
+  font-size: large;
+  background-color: var(--btn-background-color);
+}
+
+button:hover {
+  background-color: var(--btn-background-color__hover);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm__input {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 30px;
+  color: var(--font-color);
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #fff;
+  border: 1px;
+  box-shadow: 0 0 0 .5px var(--color-lightgray);
+  border-radius: 5px;
+}
+
+.loginForm__input:focus {
+  box-shadow: 0 0 0 2px var(--color-yellow);
 }

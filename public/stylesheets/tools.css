@@ -1,22 +1,4 @@
-:root {
-    --background-color: #f6f6f6;
-    --btn-background-color: #aaaaaa;
-    --btn-background-color__hover: #888888;
-    --btn-font-color: #ffffff;
-    --color-yellow: #dfd23f;
-    --color-lightgray: #d0d0d0;
-    --font-color: #5d6f7a;
-}
-
-* {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #1b1527;
-}
-
-body {
-    background-color: var(--background-color);
-    margin: 0;
-}
+@import url("custom.css");
 
 .input-data {
     display: flex;
@@ -104,7 +86,7 @@ body {
     margin-left: 5px;
 }
 
-.scoreboard__button input {
+input[type="button"] {
     border: none;
     border-radius: 5px;
     margin: 2px 0;
@@ -113,7 +95,20 @@ body {
     background-color: var(--btn-background-color);
 }
 
-.scoreboard__button input:hover {
+input[type="button"]:hover {
+    background-color: var(--btn-background-color__hover);
+}
+
+button[type="submit"] {
+    border: none;
+    border-radius: 5px;
+    margin: 2px 0;
+    color: var(--btn-font-color);
+    font-size: large;
+    background-color: var(--btn-background-color);
+}
+
+button[type="submit"]:hover {
     background-color: var(--btn-background-color__hover);
 }
 
