@@ -1,3 +1,30 @@
+// using datas
+
+import { gameData } from "./data.js"
+
+for (const season in gameData.season) {
+    $("#season").append(`<option value="${season}">${season}</option>`);
+}
+
+$("#season").change(function(){
+    var seasonSelect = $("#season").find(":selected").text();
+    $("#division").empty();
+    $("#division").removeAttr("disabled")
+    for (const division in gameData.season[seasonSelect]) {
+        $("#division").append(`<option value="${division}">${division}</option>`);
+    }
+})
+
+$("#division").change(function(){
+    var seasonSelect = $("#season").find(":selected").text();
+    var divisionSelect = $("#division").find(":selected").text();
+    $("#versus").empty();
+    $("#versus").removeAttr("disabled")
+    for (const versus in gameData.season[seasonSelect][divisionSelect]) {
+        $("#versus").append(`<option value="${versus}">${versus}</option>`);
+    }
+})
+
 // scoreboard table-------------------------------------------------------------------
 
 const scoreboard = document.querySelector(".input-data__scoreboard__table");

@@ -4,7 +4,7 @@
 mixin hitterRecordTable(team, count)
   tr(class=`input-data__record__team${team}__hitter${count}`)
       td 
-          select(class="input-select big" name=`team${team}__hitter${count}`)
+          select(class="input-select big" id=`team${team}__hitter${count}` name=`team${team}__hitter${count}`)
       each item in hitterRecordElements
           td 
               input(class="input-text" name=`team${team}__hitter${count}__${item}`)
@@ -12,9 +12,16 @@ mixin hitterRecordTable(team, count)
 mixin pitcherRecordTable(team, count)
   tr(class=`input-data__record__team${team}__pitcher${count}`)
     td 
-      select(class="input-select small" name=`team${team}__pitcher${count}`)
-      select(class="input-select small" name=`team${team}__pitcher${count}__inning1`)
-      select(class="input-select small" name=`team${team}__pitcher${count}__inning2`)
+      select(class="input-select small" id=`team${team}__pitcher${count}` name=`team${team}__pitcher${count}`)
+      select(class="input-select small" id=`team${team}__pitcher${count}__inning1` name=`team${team}__pitcher${count}__inning1`)
+        option
+        -for (var i=0; i<16; i++)
+          option=i
+      select(class="input-select small" id=`team${team}__pitcher${count}__inning2` name=`team${team}__pitcher${count}__inning2`)
+        option
+        option 0
+        option 1/3
+        option 2/3
     each item in pitcherRecordElements
       td 
         input(class="input-text" name=`team${team}__pitcher${count}__${item}`)
@@ -25,7 +32,7 @@ mixin recordTable(team)
       thead(class='input-data__record__head')
           tr.input-data__record__item
             th
-              select.input-select.input-data__record__top__first(name=`record__team${team}`)
+              select.input-select.input-data__record__top__first(id=`record__team${team}` name=`record__team${team}`)
             each item in hitterRecordElements
               th=item
       tbody(class=`input-data__record__team${team}__hitter__table`)
@@ -52,12 +59,12 @@ mixin recordTable(team)
       tbody(class=`input-data__record__team${team}__pitcher__table`)
         -for (var i=1; i<9; i++)
           +pitcherRecordTable(team, i)
-      tfoot
+      tfoot 
         tr(class=`input-data__record__team${team}__pitcher__sum`)
           td(class='input-data__record__sum')
             div(class=`record__buttons`)
-              input(class=`record__team${team}__pitcher__add` type='button', value='+')
-              input(class=`record__team${team}__pitcher__sub` type='button', value='-')
+              input(class=`record__team${team}__pitcher__add` type='button')
+              input(class=`record__team${team}__pitcher__sub` type='button')
             p SUM
           each item in pitcherRecordElements
             td 
@@ -74,27 +81,26 @@ body(onselectstart='return false')
     .input-data__game-info
       .input-data__game-info__top
         .input-data__game-info__top__season
-          label#season 시즌
-          select#season.input-select(name='game-info__season')
-            option
+          label(for='season') 시즌
+          select.input-select(id='season' name='game-info__season' value="시즌 선택")
         .input-data__game-info__top__division
-          label#division 디비전
-          select#division.input-select(name='game-info__division')
+          label(for='division') 디비전
+          select.input-select(id='division' name='game-info__division' value="디비전 선택" disabled)
             option
         .input-data__game-info__top__versus
-          label#versus 경기
-          select#versus.input-select(name='game-info__versus')
+          label(for='versus') 경기
+          select.input-select(id='versus' name='game-info__versus' value="경기 선택" disabled)
             option
       .input-data__game-info__bottom
         .input-data__game-info__bottom__date
-          label#date 날짜
+          label(for='date') 날짜
           input#date(type='date' name='game-info__date')
         .input-data__game-info__bottom__time
-          label#time 시간
+          label(for='time') 시간
           input#time(type='time' name='game-info__time')
         .input-data__game-info__bottom__stadium
-          label#stadium 경기장
-          select#stadium.input-select(name='game-info__stadium')
+          label(for='stadium') 구장
+          select.input-select(id='stadium' name='game-info__stadium')
     .input-data__scoreboard
       table.input-data__scoreboard__table
         thead 
@@ -105,13 +111,13 @@ body(onselectstart='return false')
         tbody
           tr.input-data__scoreboard__score.input-data__scoreboard__first
             td
-              select.input-select(name='team1')
+              select.input-select(id='team1' name='team1')
             -for (var i=1; i<10; i++)
               td
                 input(class="input-text" name=`team1__${i}th_inning` min="0" type="number")
           tr.input-data__scoreboard__score.input-data__scoreboard__after
             td
-              select.input-select(name='team2')
+              select.input-select(id='team2' name='team2')
             -for (var i=1; i<10; i++)
               td
                 input(class="input-text" name=`team2__${i}th_inning` min="0" type="number")
@@ -134,5 +140,6 @@ body(onselectstart='return false')
       +recordTable(1)
       +recordTable(2)
     button(type='submit') SAVE
-script(src='/javascripts/tools.js')
+script(src="http://code.jquery.com/jquery-latest.js")
+script(src='/javascripts/tools.js' type='module')
 footer
