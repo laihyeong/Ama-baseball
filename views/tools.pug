@@ -63,8 +63,8 @@ mixin recordTable(team)
         tr(class=`input-data__record__team${team}__pitcher__sum`)
           td(class='input-data__record__sum')
             div(class=`record__buttons`)
-              input(class=`record__team${team}__pitcher__add` type='button')
-              input(class=`record__team${team}__pitcher__sub` type='button')
+              input(class=`record__team${team}__pitcher__add` type='button' value="+")
+              input(class=`record__team${team}__pitcher__sub` type='button' value="-")
             p SUM
           each item in pitcherRecordElements
             td 
