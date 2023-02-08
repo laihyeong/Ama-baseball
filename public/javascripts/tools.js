@@ -9,6 +9,7 @@ for (const season in gameData.season) {
 $("#season").change(function(){
     var seasonSelect = $("#season").find(":selected").text();
     $("#division").empty();
+    $("#versus").empty();
     $("#division").removeAttr("disabled")
     for (const division in gameData.season[seasonSelect]) {
         $("#division").append(`<option value="${division}">${division}</option>`);
